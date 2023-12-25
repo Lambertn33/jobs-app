@@ -1,23 +1,28 @@
-import { Home, Auth, Jobs, Job } from "./pages";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import { Home, Auth, Jobs, Job } from "./pages";
+import { AppNavbar } from "./components";
 
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route path="/auth">
-          <Auth />
-        </Route>
-        <Route path="/jobs/:id">
-          <Job />
-        </Route>
-        <Route path="/jobs">
-          <Jobs />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+      <AppNavbar />
+       <div className="px-12">
+        <Switch>
+          <Route path="/auth">
+            <Auth />
+          </Route>
+          <Route path="/jobs/:id">
+            <Job />
+          </Route>
+          <Route path="/jobs">
+            <Jobs />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
     </Router>
   );
 };
