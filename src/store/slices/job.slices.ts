@@ -11,12 +11,7 @@ interface jobInterface {
   description: string;
   type: string;
   salary: number;
-  company: {
-    id: number;
-    manager: string;
-    name: string;
-    location: string;
-  };
+  companies: { id: number; manager: string; name: string; location: string };
 }
 
 interface jobSliceInterface {
@@ -27,7 +22,7 @@ interface jobSliceInterface {
 
 export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
   const response = await getAllJobs();
-  return response;
+  return response as jobInterface[];
 });
 
 const jobsSlice = createSlice({

@@ -1,50 +1,21 @@
-import axios from "axios";
-
-const jsonServerUrl = "http://localhost:3000";
+import { supabase } from "@/helpers/supabase";
 
 interface jobInterface {
   id: number;
   company_id: number;
   title: string;
   description: string;
-  salary: number;
   type: string;
-}
-
-interface companyInterface {
-  id: number;
-  name: string;
-  manager: string;
-  location: string;
+  salary: number;
+  companies: { id: number; manager: string; name: string; location: string };
 }
 
 export const getAllJobs = async () => {
-  const [jobsResponse, companiesResponse] = await Promise.all([
-    axios.get(`${jsonServerUrl}/jobs`),
-    axios.get(`${jsonServerUrl}/companies`),
-  ]);
-
-  const jobs = jobsResponse.data;
-  const companies = companiesResponse.data;
-
-  const jobsWithCompanies = jobs.map((job: jobInterface) => {
-    const company = companies.find(
-      (c: companyInterface) => c.id === job.company_id
+  const { data } = await supabase
+    .from("jobs")
+    .select(
+      `id, company_id, title, description, salary, type, companies(id, name, manager, location)`
     );
-    return {
-      id: job.id,
-      title: job.title,
-      description: job.description,
-      type: job.type,
-      salary: job.salary,
-      company: {
-        id: company ? company.id : -1,
-        name: company ? company.name : "Unknown",
-        manager: company ? company.manager : "Unknown Manager",
-        location: company ? company.location : "",
-      },
-    };
-  });
 
-  return jobsWithCompanies;
+  return data as unknown as jobInterface[];
 };

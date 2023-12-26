@@ -17,7 +17,7 @@ interface jobInterface {
   description: string;
   type: string;
   salary: number;
-  company: {
+  companies: {
     id: number;
     manager: string;
     name: string;
@@ -30,7 +30,7 @@ interface JobDetailsProps {
 }
 
 const RenderJobAdditionalInfo: FC<JobDetailsProps> = ({ job }) => {
-  const { company, salary, type } = job;
+  const { companies, salary, type } = job;
 
   const badgeColor =
     type === JOB_TYPES.ONSITE
@@ -44,15 +44,15 @@ const RenderJobAdditionalInfo: FC<JobDetailsProps> = ({ job }) => {
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-1">
           <FaBuilding />
-          <span className="text-xs font-semibold">{company.name}</span>
+          <span className="text-xs font-semibold">{companies.name}</span>
         </div>
         <div className="flex items-center gap-1">
           <FaLocationDot className="text-xl" />
-          <span className="text-xs font-semibold">{company.location}</span>
+          <span className="text-xs font-semibold">{companies.location}</span>
         </div>
         <div className="flex items-center gap-1">
           <FcManager className="text-xl" />
-          <span className="text-xs font-semibold">{company.manager}</span>
+          <span className="text-xs font-semibold">{companies.manager}</span>
         </div>
       </div>
       <div className="flex flex-col gap-2">

@@ -9,7 +9,7 @@ interface jobInterface {
   description: string;
   salary: number;
   type: string;
-  company: {
+  companies: {
     id: number;
     manager: string;
     name: string;
