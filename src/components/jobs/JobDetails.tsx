@@ -73,7 +73,7 @@ export const JobDetails: FC<JobDetailsProps> = ({ job }) => {
   const { title, description } = job;
 
   return (
-    <Card className="max-w-md m-4">
+    <Card className="max-w-md my-4">
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         {title}
       </h5>

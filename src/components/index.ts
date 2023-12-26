@@ -4,4 +4,6 @@ import { JobsList } from "./jobs/JobsList";
 
 import { JobDetails } from "./jobs/JobDetails";
 
-export { AppNavbar, JobsList, JobDetails };
+import { JobsFilter } from "./jobs/JobsFilter";
+
+export { AppNavbar, JobsList, JobDetails, JobsFilter };
