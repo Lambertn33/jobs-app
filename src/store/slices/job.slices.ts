@@ -9,11 +9,14 @@ interface jobInterface {
   company_id: number;
   title: string;
   description: string;
+  type: string;
+  salary: number;
   company: {
     id: number;
     manager: string;
     name: string;
-  }
+    location: string;
+  };
 }
 
 interface jobSliceInterface {

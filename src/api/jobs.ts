@@ -7,12 +7,15 @@ interface jobInterface {
   company_id: number;
   title: string;
   description: string;
+  salary: number;
+  type: string;
 }
 
 interface companyInterface {
   id: number;
   name: string;
   manager: string;
+  location: string;
 }
 
 export const getAllJobs = async () => {
@@ -32,10 +35,13 @@ export const getAllJobs = async () => {
       id: job.id,
       title: job.title,
       description: job.description,
+      type: job.type,
+      salary: job.salary,
       company: {
         id: company ? company.id : -1,
         name: company ? company.name : "Unknown",
         manager: company ? company.manager : "Unknown Manager",
+        location: company ? company.location : "",
       },
     };
   });

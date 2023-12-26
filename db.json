@@ -5,22 +5,26 @@
     {
       "id": 1,
       "name": "ABC Company",
-      "manager": "ABC Manager"
+      "manager": "ABC Manager",
+      "location": "New York USA"
     },
     {
       "id": 2,
       "name": "DEF Company",
-      "manager": "DEF Manager"
+      "manager": "DEF Manager",
+      "location": "Brooklyn USA"
     },
     {
       "id": 3,
       "name": "GHI Company",
-      "manager": "GHI Manager"
+      "manager": "GHI Manager",
+      "location": "Amsterdam, Netherlands"
     },
     {
       "id": 4,
       "name": "JKL Company",
-      "manager": "JKL Manager"
+      "manager": "JKL Manager",
+      "location": "Cairo, Egypt"
     }
   ],
   "jobs": [
@@ -28,48 +32,64 @@
       "id": 1,
       "company_id": 1,
       "title": "Senior Go Engineer",
+      "type": "Remote",
+      "salary": 120000,
       "description": "We are seeking a highly skilled and experienced Senior Go Engineer to join our dynamic team. As a Senior Go Engineer, you will play a key role in the design, development, and maintenance of our critical systems, ensuring optimal performance, scalability, and reliability. The ideal candidate will have a deep understanding of Go programming language, strong problem-solving skills, and a proven track record of delivering high-quality software solutions."
     },
     {
       "id": 2,
       "company_id": 1,
       "title": "Go Engineer",
+      "type": "Remote",
+      "salary": 60000,
       "description": "We are seeking a highly skilled and experienced Go Engineer to join our dynamic team. As a Go Engineer, you will play a key role in the design, development, and maintenance of our critical systems, ensuring optimal performance, scalability, and reliability. The ideal candidate will have a deep understanding of Go programming language, strong problem-solving skills, and a proven track record of delivering high-quality software solutions."
     },
     {
       "id": 3,
       "company_id": 2,
       "title": "Mid PHP Engineer",
+      "type": "Onsite",
+      "salary": 90000,
       "description": "We are seeking a talented Mid-Level PHP Developer to join our growing development team. As a Mid-Level PHP Developer, you will be instrumental in the design, development, and maintenance of our web applications, ensuring they meet high standards of functionality, usability, and performance. The ideal candidate will have a strong background in PHP development, a good understanding of web technologies, and a commitment to producing clean and efficient code."
     },
     {
       "id": 4,
       "company_id": 2,
       "title": "PHP Engineer",
+      "type": "Hybrid",
+      "salary": 120000,
       "description": "We are seeking a talented Mid-Level PHP Developer to join our growing development team. As a Mid-Level PHP Developer, you will be instrumental in the design, development, and maintenance of our web applications, ensuring they meet high standards of functionality, usability, and performance. The ideal candidate will have a strong background in PHP development, a good understanding of web technologies, and a commitment to producing clean and efficient code."
     },
     {
       "id": 5,
       "company_id": 3,
       "title": "Senior Go Engineer",
+      "type": "Remote",
+      "salary": 190000,
       "description": "We are seeking a highly skilled and experienced Senior Go Engineer to join our dynamic team. As a Senior Go Engineer, you will play a key role in the design, development, and maintenance of our critical systems, ensuring optimal performance, scalability, and reliability. The ideal candidate will have a deep understanding of Go programming language, strong problem-solving skills, and a proven track record of delivering high-quality software solutions."
     },
     {
       "id": 6,
       "company_id": 3,
       "title": "Go Engineer",
+      "type": "Hybrid",
+      "salary": 100000,
       "description": "We are seeking a highly skilled and experienced Go Engineer to join our dynamic team. As a Go Engineer, you will play a key role in the design, development, and maintenance of our critical systems, ensuring optimal performance, scalability, and reliability. The ideal candidate will have a deep understanding of Go programming language, strong problem-solving skills, and a proven track record of delivering high-quality software solutions."
     },
     {
       "id": 7,
       "company_id": 4,
       "title": "Mid PHP Engineer",
+      "type": "Remote",
+      "salary": 120000,
       "description": "We are seeking a talented Mid-Level PHP Developer to join our growing development team. As a Mid-Level PHP Developer, you will be instrumental in the design, development, and maintenance of our web applications, ensuring they meet high standards of functionality, usability, and performance. The ideal candidate will have a strong background in PHP development, a good understanding of web technologies, and a commitment to producing clean and efficient code."
     },
     {
       "id": 8,
       "company_id": 4,
       "title": "PHP Engineer",
+      "type": "Onsite",
+      "salary": 120000,
       "description": "We are seeking a talented Mid-Level PHP Developer to join our growing development team. As a Mid-Level PHP Developer, you will be instrumental in the design, development, and maintenance of our web applications, ensuring they meet high standards of functionality, usability, and performance. The ideal candidate will have a strong background in PHP development, a good understanding of web technologies, and a commitment to producing clean and efficient code."
     }
   ]

@@ -4,3 +4,9 @@ export const RESPONSE_STATUSES = {
   LOADING: "loading",
   FAILED: "failed",
 };
+
+export const JOB_TYPES = {
+  REMOTE: "Remote",
+  HYBRID: "Hybrid",
+  ONSITE: "Onsite"
+}

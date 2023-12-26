@@ -10,9 +10,11 @@ import { JobsList } from "@/components";
 export const Jobs: FC = () => {
   const dispatch = useAppDispatch();
 
-  const { data, status, error } = useAppSelector(
-    (state: RootState) => state.jobs
-  );
+  const {
+    data: jobs,
+    status,
+    error,
+  } = useAppSelector((state: RootState) => state.jobs);
 
   useEffect(() => {
     dispatch(fetchJobs());
@@ -29,8 +31,8 @@ export const Jobs: FC = () => {
   }
   return (
     <div className="p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <JobsList jobs={data} />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:col-span-4">
+        <JobsList jobs={jobs} />
       </div>
     </div>
   );
