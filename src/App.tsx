@@ -7,7 +7,7 @@ const App = () => {
   return (
     <Router>
       <AppNavbar />
-       <div className="px-12">
+      <div className="px-12">
         <Switch>
           <Route path="/auth">
             <Auth />

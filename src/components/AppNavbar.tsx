@@ -7,11 +7,7 @@ export const AppNavbar = () => {
   return (
     <Navbar fluid rounded className="bg-gray-100 py-4 shadow-sm">
       <Navbar.Brand as={Link} to="/">
-        <img
-          src={logoImg}
-          className="mr-3 h-6 sm:h-9"
-          alt="Flowbite React Logo"
-        />
+        <img src={logoImg} className="mr-3 h-6 sm:h-9" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
           Jobs Portal
         </span>
@@ -24,7 +20,9 @@ export const AppNavbar = () => {
         <Navbar.Link as={Link} to="/jobs">
           Jobs
         </Navbar.Link>
-        <Navbar.Link as={Link} to="/auth">Authentication</Navbar.Link>
+        <Navbar.Link as={Link} to="/auth">
+          Authentication
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
