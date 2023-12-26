@@ -7,6 +7,7 @@ import { RESPONSE_STATUSES } from "@/helpers/constants";
 
 export const Jobs: FC = () => {
   const dispatch = useAppDispatch();
+  
   const { data, status, error } = useAppSelector(
     (state: RootState) => state.jobs
   );
