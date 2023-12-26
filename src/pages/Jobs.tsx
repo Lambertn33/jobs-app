@@ -5,9 +5,11 @@ import { RootState } from "@/store/store";
 
 import { RESPONSE_STATUSES } from "@/helpers/constants";
 
+import { JobsList } from "@/components";
+
 export const Jobs: FC = () => {
   const dispatch = useAppDispatch();
-  
+
   const { data, status, error } = useAppSelector(
     (state: RootState) => state.jobs
   );
@@ -25,6 +27,11 @@ export const Jobs: FC = () => {
   if (status === RESPONSE_STATUSES.FAILED) {
     return <div>Error: {error}</div>;
   }
-  console.log(data);
-  return <div>Jobs</div>;
+  return (
+    <div className="p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <JobsList jobs={data} />
+      </div>
+    </div>
+  );
 };

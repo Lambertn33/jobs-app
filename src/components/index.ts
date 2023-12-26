@@ -1,3 +1,5 @@
 import { AppNavbar } from "./AppNavbar";
 
-export { AppNavbar }
+import { JobsList } from "./jobs/JobsList";
+
+export { AppNavbar, JobsList };
