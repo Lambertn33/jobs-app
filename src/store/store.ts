@@ -1,10 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import jobsReducer from "./slices/job.slices";
+
+import companiesReducer from "./slices/company.slices";
+
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
     jobs: jobsReducer,
+    companies: companiesReducer,
   },
 });
 
