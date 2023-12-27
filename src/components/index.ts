@@ -12,4 +12,15 @@ import { JobDetails } from "./jobs/JobDetails";
 
 import { JobsFilter } from "./jobs/JobsFilter";
 
-export { AppNavbar, AppAlert, AppTextInput, JobsList, JobDetails, JobsFilter, AuthForm };
+import { PrivateRoute } from "./PrivateRoute";
+
+export {
+  AppNavbar,
+  AppAlert,
+  AppTextInput,
+  JobsList,
+  JobDetails,
+  JobsFilter,
+  AuthForm,
+  PrivateRoute,
+};

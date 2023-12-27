@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Home, Auth, Jobs, Job } from "./pages";
-import { AppNavbar } from "./components";
+import { Home, Auth, Jobs, Job, Profile } from "./pages";
+import { AppNavbar, PrivateRoute } from "./components";
 
 const App = () => {
   return (
@@ -9,6 +9,9 @@ const App = () => {
       <AppNavbar />
       <div className="px-12">
         <Switch>
+          <PrivateRoute path="/profile">
+            <Profile />
+          </PrivateRoute>
           <Route path="/auth">
             <Auth />
           </Route>

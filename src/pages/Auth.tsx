@@ -1,5 +1,7 @@
 import { FormEvent, useState } from "react";
 
+import { useHistory } from "react-router-dom";
+
 import { useAppDispatch } from "@/store/store";
 
 import { userActions } from "@/store/slices/user.slice";
@@ -25,6 +27,7 @@ interface loggedInUser {
 
 export const Auth = () => {
   const dispatch = useAppDispatch();
+  const history = useHistory();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string>("");
@@ -83,6 +86,7 @@ export const Auth = () => {
 
       if (user) {
         dispatch(userActions.setUser(user));
+        history.push("/profile");
       }
     } catch (error) {
       setError("Authentication failed. Please try again.");
