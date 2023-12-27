@@ -4,7 +4,7 @@ import { Spinner } from "flowbite-react";
 
 import { useAppDispatch, useAppSelector } from "@/store/store";
 
-import { fetchJobs } from "@/store/slices/job.slices";
+import { fetchJobs, jobsActions } from "@/store/slices/job.slices";
 
 import { fetchCompanies } from "@/store/slices/company.slices";
 
@@ -14,13 +14,21 @@ import { RESPONSE_STATUSES } from "@/helpers/constants";
 
 import { JobsList, JobsFilter } from "@/components";
 
+interface JobFilters {
+  title: string;
+  type: string;
+  company: string;
+}
+
 export const Jobs: FC = () => {
   const dispatch = useAppDispatch();
 
   const {
     data: jobs,
+    filteredData: filteredJobs,
     status: jobsStatus,
     error: jobsError,
+    isFiltering,
   } = useAppSelector((state: RootState) => state.jobs);
 
   const {
@@ -29,15 +37,18 @@ export const Jobs: FC = () => {
     error: companiesError,
   } = useAppSelector((state: RootState) => state.companies);
 
-  useEffect(() => {
-    if (!jobs.length) {
-      dispatch(fetchJobs());
-    }
+  // filter jobs
+  const filterHandler = (filters: JobFilters) =>
+    dispatch(jobsActions.filterJobs(filters));
 
-    if (!companies.length) {
-      dispatch(fetchCompanies());
-    }
-  }, [dispatch, companies, jobs]);
+  useEffect(() => {
+    const fetchData = async () => {
+      await dispatch(fetchJobs());
+      await dispatch(fetchCompanies());
+    };
+
+    fetchData();
+  }, [dispatch]);
 
   if (jobsError || companiesError) return <p>Error</p>;
 
@@ -63,9 +74,9 @@ export const Jobs: FC = () => {
       <span className="font-bold text-2xl text-center">
         Available Jobs List
       </span>
-      <JobsFilter companies={companies} />
+      <JobsFilter companies={companies} onFilter={filterHandler} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:col-span-4">
-        <JobsList jobs={jobs} />
+        <JobsList jobs={isFiltering ? filteredJobs : jobs} />
       </div>
     </div>
   );

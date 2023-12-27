@@ -22,5 +22,9 @@ interface JobsListProps {
 }
 
 export const JobsList: FC<JobsListProps> = ({ jobs }) => {
-  return jobs.map((job) => <JobDetails job={job} key={job.id} />);
+  return jobs.length ? (
+    jobs.map((job) => <JobDetails job={job} key={job.id} />)
+  ) : (
+    <span>No Jobs found</span>
+  );
 };

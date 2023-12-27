@@ -16,8 +16,16 @@ interface jobInterface {
 
 interface jobSliceInterface {
   data: jobInterface[];
+  filteredData: jobInterface[];
+  isFiltering: boolean;
   status: string;
   error: string | null;
+}
+
+interface Filters {
+  title: string;
+  type: string;
+  company: string;
 }
 
 export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
@@ -29,10 +37,26 @@ const jobsSlice = createSlice({
   name: "jobs",
   initialState: {
     data: [],
+    isFiltering: false,
+    filteredData: [],
     status: RESPONSE_STATUSES.IDLE,
     error: null,
   } as jobSliceInterface,
-  reducers: {},
+
+  reducers: {
+    filterJobs: (state, action: PayloadAction<Filters>) => {
+      const { title, type, company } = action.payload;
+      state.isFiltering = true;
+      state.filteredData = state.data.filter((job) => {
+        return (
+          (title === "" || job.title.toLowerCase() === title.toLowerCase()) &&
+          (type === "" || job.type === type) &&
+          (company === "" || job.companies.id.toString() === company)
+        );
+      });
+    },
+  },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchJobs.pending, (state) => {
@@ -51,5 +75,7 @@ const jobsSlice = createSlice({
       });
   },
 });
+
+export const jobsActions = jobsSlice.actions;
 
 export default jobsSlice.reducer;
