@@ -1,11 +1,27 @@
-import { Navbar } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { Navbar, Dropdown, Button } from "flowbite-react";
+
+import { Link, useHistory } from "react-router-dom";
+
+import { useAppSelector, useAppDispatch } from "@/store/store";
+
+import { userActions } from "@/store/slices/user.slice";
+
+import { FaUserCircle } from "react-icons/fa";
 
 import logoImg from "../assets/images/job.png";
 
 export const AppNavbar = () => {
+  const history = useHistory();
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.user);
+
+  const logoutHandler = () => {
+    dispatch(userActions.logout());
+    history.replace("/");
+  };
+
   return (
-    <Navbar fluid rounded className="bg-gray-100 py-4 shadow-sm">
+    <Navbar fluid rounded className="bg-gray-100 py-4 shadow-sm ">
       <Navbar.Brand as={Link} to="/">
         <img src={logoImg} className="mr-3 h-6 sm:h-9" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
@@ -20,9 +36,36 @@ export const AppNavbar = () => {
         <Navbar.Link as={Link} to="/jobs">
           Jobs
         </Navbar.Link>
-        <Navbar.Link as={Link} to="/auth">
-          Authentication
-        </Navbar.Link>
+        {user ? (
+          <div className="flex md:order-2">
+            <Dropdown
+              arrowIcon={false}
+              inline
+              label={<FaUserCircle className="text-2xl" />}
+            >
+              <Dropdown.Header>
+                <span className="block text-sm">{user.names}</span>
+                <span className="block truncate text-sm font-medium">
+                  {user.email}
+                </span>
+              </Dropdown.Header>
+              <Dropdown.Item>My Profile</Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item>My Applications</Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item>
+                <div className="w-full">
+                  <Button onClick={logoutHandler}>Logout</Button>
+                </div>
+              </Dropdown.Item>
+            </Dropdown>
+            <Navbar.Toggle />
+          </div>
+        ) : (
+          <Navbar.Link as={Link} to="/auth">
+            Authentication
+          </Navbar.Link>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );

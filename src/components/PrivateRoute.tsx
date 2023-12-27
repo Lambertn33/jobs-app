@@ -1,5 +1,7 @@
 import { FC, ReactNode } from "react";
+
 import { Route, Redirect, RouteProps } from "react-router-dom";
+
 import { useAppSelector } from "@/store/store";
 
 interface PrivateRouteProps extends RouteProps {
@@ -7,7 +9,7 @@ interface PrivateRouteProps extends RouteProps {
 }
 
 export const PrivateRoute: FC<PrivateRouteProps> = ({ children, ...rest }) => {
-  const { user } = useAppSelector((state) => state);
+  const { user } = useAppSelector((state) => state.user);
 
   return (
     <Route
