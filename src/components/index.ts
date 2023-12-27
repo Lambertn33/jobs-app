@@ -4,6 +4,8 @@ import { AppAlert } from "./UI/AppAlert";
 
 import { AppTextInput } from "./UI/AppTextInput";
 
+import { AppTextarea } from "./UI/AppTextarea";
+
 import { AuthForm } from "./auth/AuthForm";
 
 import { JobsList } from "./jobs/JobsList";
@@ -18,6 +20,7 @@ export {
   AppNavbar,
   AppAlert,
   AppTextInput,
+  AppTextarea,
   JobsList,
   JobDetails,
   JobsFilter,

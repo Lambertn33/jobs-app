@@ -1,38 +1,36 @@
 import { ChangeEvent, FC } from "react";
 
-import { Label, TextInput } from "flowbite-react";
+import { Label, Textarea } from "flowbite-react";
 
-interface AppTextInputProps {
+interface AppTextAreaProps {
   id?: string;
   label?: string;
   value?: string;
-  type?: string;
-  additionalProps?: object; 
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  additionalProps?: object;
+  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-export const AppTextInput: FC<AppTextInputProps> = ({
+export const AppTextarea: FC<AppTextAreaProps> = ({
+  additionalProps,
   id,
   label,
-  value,
-  type,
-  additionalProps,
   onChange,
+  value,
 }) => {
   return (
-    <div>
+    <div className="max-w-md">
       {label && (
         <div className="mb-2 block">
           <Label htmlFor={id} value={label} />
         </div>
       )}
-      <TextInput
+      <Textarea
         id={id}
-        type={type}
         required
-        value={value}
         onChange={onChange}
+        value={value}
         {...additionalProps}
+        rows={4}
       />
     </div>
   );
