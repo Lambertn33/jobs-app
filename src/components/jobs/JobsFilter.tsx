@@ -51,7 +51,7 @@ export const JobsFilter: FC<JobsFiltersProps> = ({ companies, onFilter }) => {
           value={filters.type}
           onChange={(e) => setFiltersHandler("type", e.target.value)}
         >
-          <option value="">Filter by work type</option>
+          <option value="">Remote, Hybrid, Onsite</option>
           {Object.entries(JOB_TYPES).map(([key, value]) => (
             <option key={key} value={value}>
               {value}
@@ -65,7 +65,7 @@ export const JobsFilter: FC<JobsFiltersProps> = ({ companies, onFilter }) => {
           value={filters.company}
           onChange={(e) => setFiltersHandler("company", e.target.value)}
         >
-          <option value="">Filter by company</option>
+          <option value="">All companies</option>
           {companies.map((company) => (
             <option value={company.id} key={company.id}>
               {company.name}
