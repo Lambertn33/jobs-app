@@ -1,5 +1,7 @@
 import { AppNavbar } from "./AppNavbar";
 
+import { AppAlert } from "./UI/AppAlert";
+
 import { AppTextInput } from "./UI/AppTextInput";
 
 import { AuthForm } from "./auth/AuthForm";
@@ -10,4 +12,4 @@ import { JobDetails } from "./jobs/JobDetails";
 
 import { JobsFilter } from "./jobs/JobsFilter";
 
-export { AppNavbar, AppTextInput, JobsList, JobDetails, JobsFilter, AuthForm };
+export { AppNavbar, AppAlert, AppTextInput, JobsList, JobDetails, JobsFilter, AuthForm };

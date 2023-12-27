@@ -4,7 +4,7 @@ import { Label, TextInput } from "flowbite-react";
 
 interface AppTextInputProps {
   id: string;
-  label: string;
+  label?: string;
   value: string;
   type: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -19,9 +19,11 @@ export const AppTextInput: FC<AppTextInputProps> = ({
 }) => {
   return (
     <div>
-      <div className="mb-2 block">
-        <Label htmlFor={id} value={label} />
-      </div>
+      {label && (
+        <div className="mb-2 block">
+          <Label htmlFor={id} value={label} />
+        </div>
+      )}
       <TextInput
         id={id}
         type={type}

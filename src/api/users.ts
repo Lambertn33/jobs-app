@@ -2,9 +2,9 @@ import { supabase } from "@/helpers/supabase";
 
 interface userInterface {
   id?: number;
-  names: string;
+  names?: string;
   email: string;
-  password?: string;
+  password: string;
 }
 
 export const register = async (newUserData: userInterface) => {
@@ -23,13 +23,16 @@ export const register = async (newUserData: userInterface) => {
 };
 
 export const login = async (userData: userInterface) => {
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("users")
     .select("*")
     .eq("email", userData.email)
     .eq("password", userData.password);
-  return data;
+  return { data, error };
 };
 
-export const verifyEmail = async (email: string) =>
-  await supabase.from("users").select("*").eq("email", email);
+export const verifyEmail = async (email: string) => {
+  const { data } = await supabase.from("users").select("*").eq("email", email);
+  return data?.length;
+}
+  
