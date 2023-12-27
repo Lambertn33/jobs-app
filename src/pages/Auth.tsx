@@ -1,5 +1,9 @@
+import { AuthForm } from "@/components";
+
 export const Auth = () => {
   return (
-    <div>Auth</div>
-  )
-}
+    <div>
+      <AuthForm />
+    </div>
+  );
+};
