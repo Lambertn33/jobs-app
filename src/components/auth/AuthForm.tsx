@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-import { Label, TextInput, Button } from "flowbite-react";
+import { Button } from "flowbite-react";
+
+import { AppTextInput } from "..";
 
 interface userInterface {
   names: string;
@@ -35,45 +37,30 @@ export const AuthForm = () => {
         </div>
 
         {!isLoginMode && (
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="names" value="Your names" />
-            </div>
-            <TextInput
-              id="names"
-              type="text"
-              required
-              value={userInputs.names}
-              onChange={(e) => changeInputHandler("names", e.target.value)}
-            />
-          </div>
+          <AppTextInput
+            label="Your names"
+            id="names"
+            type="text"
+            value={userInputs.names}
+            onChange={(e) => changeInputHandler("names", e.target.value)}
+          />
         )}
 
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="email" value="Your email" />
-          </div>
-          <TextInput
-            id="email"
-            type="email"
-            required
-            value={userInputs.email}
-            onChange={(e) => changeInputHandler("email", e.target.value)}
-          />
-        </div>
+        <AppTextInput
+          id="email"
+          label="Your email"
+          type="email"
+          value={userInputs.email}
+          onChange={(e) => changeInputHandler("email", e.target.value)}
+        />
 
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="password" value="Your password" />
-          </div>
-          <TextInput
-            id="password"
-            type="password"
-            value={userInputs.password}
-            onChange={(e) => changeInputHandler("password", e.target.value)}
-            required
-          />
-        </div>
+        <AppTextInput
+          id="password"
+          label="Your password"
+          type="password"
+          value={userInputs.password}
+          onChange={(e) => changeInputHandler("password", e.target.value)}
+        />
 
         <Button type="submit">Submit</Button>
         <span
