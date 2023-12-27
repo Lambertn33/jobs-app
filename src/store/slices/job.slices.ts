@@ -37,8 +37,8 @@ const jobsSlice = createSlice({
   name: "jobs",
   initialState: {
     data: [],
-    isFiltering: false,
     filteredData: [],
+    isFiltering: false,
     status: RESPONSE_STATUSES.IDLE,
     error: null,
   } as jobSliceInterface,
