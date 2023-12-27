@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import { Link } from "react-router-dom";
+
 import { Button, Badge, Card } from "flowbite-react";
 
 import { FaBuilding } from "react-icons/fa";
@@ -70,7 +72,7 @@ const RenderJobAdditionalInfo: FC<JobDetailsProps> = ({ job }) => {
   );
 };
 export const JobDetails: FC<JobDetailsProps> = ({ job }) => {
-  const { title, description } = job;
+  const { id, title, description } = job;
 
   return (
     <Card className="max-w-md my-4">
@@ -84,7 +86,9 @@ export const JobDetails: FC<JobDetailsProps> = ({ job }) => {
           : description}
       </p>
       <RenderJobAdditionalInfo job={job} />
-      <Button>Read more</Button>
+      <Button gradientMonochrome="success" as={Link} to={`/jobs/${id}`}>
+        Read more
+      </Button>
     </Card>
   );
 };

@@ -37,8 +37,8 @@ const jobsSlice = createSlice({
   name: "jobs",
   initialState: {
     data: [],
-    filteredData: [],
     isFiltering: false,
+    filteredData: [],
     status: RESPONSE_STATUSES.IDLE,
     error: null,
   } as jobSliceInterface,
@@ -49,7 +49,7 @@ const jobsSlice = createSlice({
       state.isFiltering = true;
       state.filteredData = state.data.filter((job) => {
         return (
-          (title === "" || job.title.toLowerCase() === title.toLowerCase()) &&
+          (title === "" || job.title.toLowerCase().includes(title.toLowerCase())) &&
           (type === "" || job.type === type) &&
           (company === "" || job.companies.id.toString() === company)
         );

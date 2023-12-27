@@ -25,6 +25,19 @@ const GET_ALL = async <T>(
   return data as unknown as T[];
 };
 
+const GET_ONE = async <T>(
+  model: string,
+  query: string,
+  id: string
+): Promise<T | null> => {
+  const { data } = await supabase
+    .from(model)
+    .select(query)
+    .eq("id", id)
+    .single();
+  return data as T | null;
+};
+
 export const getAllJobs = async () =>
   await GET_ALL<jobInterface>(
     "jobs",
@@ -33,3 +46,10 @@ export const getAllJobs = async () =>
 
 export const getAllCompanies = async () =>
   await GET_ALL<companyInterface>("companies", `id, name, manager, location`);
+
+export const getSingleJob = async (id: string) =>
+  await GET_ONE<jobInterface>(
+    "jobs",
+    `id, company_id, title, description, salary, type, companies(id, name, manager, location)`,
+    id
+  );

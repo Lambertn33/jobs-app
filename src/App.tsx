@@ -12,7 +12,7 @@ const App = () => {
           <Route path="/auth">
             <Auth />
           </Route>
-          <Route path="/jobs/:id">
+          <Route path="/jobs/:jobId">
             <Job />
           </Route>
           <Route path="/jobs">
