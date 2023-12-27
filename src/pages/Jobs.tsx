@@ -1,5 +1,7 @@
 import { useEffect, FC } from "react";
 
+import { Spinner } from "flowbite-react";
+
 import { useAppDispatch, useAppSelector } from "@/store/store";
 
 import { fetchJobs } from "@/store/slices/job.slices";
@@ -28,9 +30,14 @@ export const Jobs: FC = () => {
   } = useAppSelector((state: RootState) => state.companies);
 
   useEffect(() => {
-    dispatch(fetchJobs());
-    dispatch(fetchCompanies());
-  }, [dispatch]);
+    if (!jobs.length) {
+      dispatch(fetchJobs());
+    }
+
+    if (!companies.length) {
+      dispatch(fetchCompanies());
+    }
+  }, [dispatch, companies, jobs]);
 
   if (jobsError || companiesError) return <p>Error</p>;
 
@@ -38,7 +45,11 @@ export const Jobs: FC = () => {
     jobsStatus === RESPONSE_STATUSES.LOADING ||
     companiesStatus === RESPONSE_STATUSES.LOADING
   ) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-full">
+        <Spinner />
+      </div>
+    );
   }
 
   if (
