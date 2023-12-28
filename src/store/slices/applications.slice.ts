@@ -15,20 +15,20 @@ interface jobApplicationInterface {
 }
 
 interface jobApplicationSliceInterface {
-  userJobs: jobApplicationInterface[];
+  userApplications: jobApplicationInterface[];
 }
 
 const jobApplicationsSlice = createSlice({
   name: "applications",
   initialState: {
-    userJobs: [],
+    userApplications: [],
   } as jobApplicationSliceInterface,
   reducers: {
     setUserApplications(
       state,
       action: PayloadAction<jobApplicationInterface[]>
     ) {
-      state.userJobs = action.payload;
+      state.userApplications = action.payload;
     },
   },
 });

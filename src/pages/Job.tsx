@@ -49,7 +49,10 @@ interface jobApplicationInterface {
 
 export const Job = () => {
   const { jobId } = useParams<JobParamsInterface>();
+
   const { user } = useAppSelector((state) => state.user);
+  const { userApplications } = useAppSelector((state) => state.applications);
+  console.log('appli', userApplications);
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -97,17 +100,27 @@ export const Job = () => {
     });
   };
 
+  // check if job has been applied before
+  const isLoggedIn = !!user;
+
+  const isJobAlreadyApplied = (): boolean => {
+    if (isLoggedIn && userApplications) {
+      return userApplications.some((application) => application.jobs.id === parseInt(jobId));
+    }
+    return false;
+  };
+
   // Apply to job
   const jobApplicationHandler = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     const { data } = await createApplication(jobApplicationInputs);
-    
+
     if (data) {
       // Application submitted successfully
       setIsSubmitting(false);
       onCloseModal();
-      
+
       Swal.fire({
         icon: "success",
         title: "Application Received",
@@ -158,11 +171,11 @@ export const Job = () => {
             <div>
               <Button
                 onClick={() => setOpenModal(true)}
-                disabled={!user}
+                disabled={!user || isJobAlreadyApplied()}
                 gradientMonochrome="success"
               >
                 <span className="font-bold">
-                  {user ? "Apply to this Job" : "Login to Apply"}
+                  {isJobAlreadyApplied() ? "Job Applied" : (user ? "Apply to this Job" : "Login to Apply")}
                 </span>
               </Button>
             </div>
