@@ -12,6 +12,8 @@ import { JobsList } from "./jobs/JobsList";
 
 import { JobDetails } from "./jobs/JobDetails";
 
+import { JobApplications } from "./jobs/JobApplications";
+
 import { JobsFilter } from "./jobs/JobsFilter";
 
 import { PrivateRoute } from "./PrivateRoute";
@@ -24,6 +26,7 @@ export {
   JobsList,
   JobDetails,
   JobsFilter,
+  JobApplications,
   AuthForm,
   PrivateRoute,
 };

@@ -25,7 +25,7 @@ const GET_ALL = async <T>(
 export const getMyAppliedJobs = async (userId: string) =>
   await GET_ALL(
     "job_applications",
-    `*, jobs(id, name, manager, location, companies(name))`,
+    `created_at, id, user_id, jobs(id, title, companies(name, location))`,
     userId
   );
 

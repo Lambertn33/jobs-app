@@ -33,6 +33,7 @@ export const AppNavbar = () => {
         <Navbar.Link as={Link} to="/">
           Home
         </Navbar.Link>
+
         <Navbar.Link as={Link} to="/jobs">
           Jobs
         </Navbar.Link>
@@ -49,16 +50,26 @@ export const AppNavbar = () => {
                   {user.email}
                 </span>
               </Dropdown.Header>
-              <Dropdown.Item>My Profile</Dropdown.Item>
+
+              <Dropdown.Item>
+                <Link to="/profile">My Profile</Link>
+              </Dropdown.Item>
+
               <Dropdown.Divider />
-              <Dropdown.Item>My Applications</Dropdown.Item>
+
+              <Dropdown.Item>
+                <Link to="/applications">My Applications</Link>
+              </Dropdown.Item>
+
               <Dropdown.Divider />
+
               <Dropdown.Item>
                 <div className="w-full">
                   <Button onClick={logoutHandler}>Logout</Button>
                 </div>
               </Dropdown.Item>
             </Dropdown>
+
             <Navbar.Toggle />
           </div>
         ) : (
