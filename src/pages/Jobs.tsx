@@ -53,8 +53,7 @@ export const Jobs: FC = () => {
   if (jobsError || companiesError) return <p>Error</p>;
 
   if (
-    jobsStatus === RESPONSE_STATUSES.LOADING ||
-    companiesStatus === RESPONSE_STATUSES.LOADING
+    jobsStatus === RESPONSE_STATUSES.LOADING
   ) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -74,7 +73,7 @@ export const Jobs: FC = () => {
       <span className="font-bold text-2xl text-center">
         Available Jobs List
       </span>
-      <JobsFilter companies={companies} onFilter={filterHandler} />
+      <JobsFilter companies={companies} companiesFetched={companiesStatus === RESPONSE_STATUSES.SUCCEEDED} onFilter={filterHandler} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:col-span-4">
         <JobsList jobs={isFiltering ? filteredJobs : jobs} />
       </div>

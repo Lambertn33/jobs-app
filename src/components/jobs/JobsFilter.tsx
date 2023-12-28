@@ -18,9 +18,14 @@ interface JobFilters {
 interface JobsFiltersProps {
   companies: companyInterface[];
   onFilter: (data: JobFilters) => void;
+  companiesFetched: boolean;
 }
 
-export const JobsFilter: FC<JobsFiltersProps> = ({ companies, onFilter }) => {
+export const JobsFilter: FC<JobsFiltersProps> = ({
+  companies,
+  onFilter,
+  companiesFetched,
+}) => {
   const [filters, setFilters] = useState({
     title: "",
     type: "",
@@ -62,6 +67,7 @@ export const JobsFilter: FC<JobsFiltersProps> = ({ companies, onFilter }) => {
 
       <div className="max-w-md">
         <Select
+          disabled={!companiesFetched}
           value={filters.company}
           onChange={(e) => setFiltersHandler("company", e.target.value)}
         >
