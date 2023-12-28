@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
+
+import Swal from "sweetalert2";
 
 import { IoIosArrowBack } from "react-icons/io";
 
@@ -9,6 +11,8 @@ import { useAppSelector } from "@/store/store";
 import { Spinner, Button, Modal } from "flowbite-react";
 
 import { getSingleJob } from "@/api/jobs";
+
+import { createApplication } from "@/api/applications";
 
 import { AppTextInput, AppTextarea } from "@/components";
 
@@ -33,12 +37,34 @@ interface companyInterface {
   location: string;
 }
 
+interface jobApplicationInterface {
+  id?: number;
+  user_id: number;
+  job_id: number;
+  reason: string;
+  portfolio: string;
+  experience_years: string;
+  linkedin: string;
+}
+
 export const Job = () => {
   const { jobId } = useParams<JobParamsInterface>();
+  const { user } = useAppSelector((state) => state.user);
+  const history = useHistory();
+
   const [isLoading, setIsLoading] = useState(false);
   const [job, setJob] = useState<jobInterface | null>(null);
   const [openModal, setOpenModal] = useState(false);
-  const { user } = useAppSelector((state) => state.user);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [jobApplicationInputs, setJobApplicationInputs] =
+    useState<jobApplicationInterface>({
+      job_id: parseInt(jobId),
+      user_id: user!.id,
+      linkedin: "",
+      experience_years: "",
+      portfolio: "",
+      reason: "",
+    });
 
   useEffect(() => {
     const fetchJob = async () => {
@@ -50,7 +76,48 @@ export const Job = () => {
     fetchJob();
   }, [jobId]);
 
-  const onCloseModal = () => setOpenModal(false);
+  // change inputs
+  const changeInputHandler = (input: string, value: string) => {
+    setJobApplicationInputs((prevState) => ({
+      ...prevState,
+      [input]: value,
+    }));
+  };
+
+  // close modal
+  const onCloseModal = () => {
+    setOpenModal(false);
+    setJobApplicationInputs({
+      job_id: parseInt(jobId),
+      user_id: user!.id,
+      linkedin: "",
+      experience_years: "",
+      portfolio: "",
+      reason: "",
+    });
+  };
+
+  // Apply to job
+  const jobApplicationHandler = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    const { data } = await createApplication(jobApplicationInputs);
+    if (data) {
+      // Application submitted successfully
+      setIsSubmitting(false);
+      onCloseModal();
+      
+      Swal.fire({
+        icon: "success",
+        title: "Application Received",
+        text: "Thanks for applying for this position. We will reach you via email in the next 48 hours",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          history.replace("/applications");
+        }
+      });
+    }
+  };
 
   return (
     <div className="py-16 flex flex-col gap-4">
@@ -76,14 +143,14 @@ export const Job = () => {
               </p>
             </div>
             <div className="flex flex-col gap-1">
-              <span>
+              <span className="text-sm font-light">
                 Location:{" "}
                 <span className="font-bold">{job?.companies.location}</span>
               </span>
-              <span>
+              <span className="text-sm font-light">
                 Work type: <span className="font-bold">{job?.type}</span>
               </span>
-              <span>
+              <span className="text-sm font-light">
                 Salary: <span className="font-bold">${job?.salary}/year</span>
               </span>
             </div>
@@ -101,14 +168,14 @@ export const Job = () => {
             <Modal show={openModal} size="lg" onClose={onCloseModal} popup>
               <Modal.Header />
               <Modal.Body>
-                <div className="space-y-6">
+                <form className="space-y-6" onSubmit={jobApplicationHandler}>
                   <h3 className="text-xl font-extrabold text-center text-gray-900 dark:text-white">
                     Apply to this Job
                   </h3>
 
                   <AppTextInput
                     id="jobTitle"
-                    additionalProps={{ disabled: true }}
+                    additionalProps={{ readOnly: true }}
                     label="Job Title"
                     value={job?.title}
                     type="text"
@@ -116,7 +183,7 @@ export const Job = () => {
 
                   <AppTextInput
                     id="userNames"
-                    additionalProps={{ disabled: true }}
+                    additionalProps={{ readOnly: true }}
                     label="Applicant names"
                     value={user?.names}
                     type="text"
@@ -124,7 +191,7 @@ export const Job = () => {
 
                   <AppTextInput
                     id="userEmail"
-                    additionalProps={{ disabled: true }}
+                    additionalProps={{ readOnly: true }}
                     label="Applicant email"
                     value={user?.email}
                     type="text"
@@ -134,21 +201,49 @@ export const Job = () => {
                     id="experienceYears"
                     label="Years of experience"
                     type="number"
+                    value={jobApplicationInputs.experience_years}
+                    onChange={(e) =>
+                      changeInputHandler("experience_years", e.target.value)
+                    }
+                  />
+                  <AppTextInput
+                    id="portfolio"
+                    label="Website/portfolio"
+                    type="url"
+                    value={jobApplicationInputs.portfolio}
+                    onChange={(e) =>
+                      changeInputHandler("portfolio", e.target.value)
+                    }
+                  />
+                  <AppTextInput
+                    id="linkedin"
+                    label="Linkedin"
+                    type="url"
+                    value={jobApplicationInputs.linkedin}
+                    onChange={(e) =>
+                      changeInputHandler("linkedin", e.target.value)
+                    }
                   />
 
                   <AppTextarea
                     id="reason"
                     label={`Why do you want to work at ${job?.companies.name}?`}
-                    value=""
-                    onChange={() => null}
+                    value={jobApplicationInputs.reason}
+                    onChange={(e) =>
+                      changeInputHandler("reason", e.target.value)
+                    }
                   />
 
                   <div className="w-full">
-                    <Button gradientMonochrome="success">
-                      Submit Application
+                    <Button
+                      disabled={isSubmitting}
+                      type="submit"
+                      gradientMonochrome="success"
+                    >
+                      {isSubmitting ? "Please wait..." : "Submit Application"}
                     </Button>
                   </div>
-                </div>
+                </form>
               </Modal.Body>
             </Modal>
           </div>

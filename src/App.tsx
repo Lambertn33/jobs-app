@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Home, Auth, Jobs, Job, Profile } from "./pages";
+import { Home, Auth, Jobs, Job, Profile, Applications } from "./pages";
+
 import { AppNavbar, PrivateRoute } from "./components";
 
 const App = () => {
@@ -11,6 +12,9 @@ const App = () => {
         <Switch>
           <PrivateRoute path="/profile">
             <Profile />
+          </PrivateRoute>
+          <PrivateRoute path="/applications">
+            <Applications />
           </PrivateRoute>
           <Route path="/auth">
             <Auth />
