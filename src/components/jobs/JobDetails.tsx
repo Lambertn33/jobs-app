@@ -29,6 +29,7 @@ interface jobInterface {
 
 interface JobDetailsProps {
   job: jobInterface;
+  isJobAlreadyApplied?: boolean;
 }
 
 const RenderJobAdditionalInfo: FC<JobDetailsProps> = ({ job }) => {
@@ -71,14 +72,24 @@ const RenderJobAdditionalInfo: FC<JobDetailsProps> = ({ job }) => {
     </div>
   );
 };
-export const JobDetails: FC<JobDetailsProps> = ({ job }) => {
+export const JobDetails: FC<JobDetailsProps> = ({
+  job,
+  isJobAlreadyApplied,
+}) => {
   const { id, title, description } = job;
 
   return (
     <Card className="max-w-md my-4">
-      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        {title}
-      </h5>
+      <div className="flex gap-4 items-center">
+        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          {title}
+        </h5>
+        {isJobAlreadyApplied && (
+          <span className="text-red-600 text-sm font-bold">
+            <Badge color="failure">Applied</Badge>
+          </span>
+        )}
+      </div>
 
       <p className="font-normal text-gray-700 dark:text-gray-400">
         {description.length > 300

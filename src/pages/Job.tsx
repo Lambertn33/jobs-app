@@ -52,7 +52,7 @@ export const Job = () => {
 
   const { user } = useAppSelector((state) => state.user);
   const { userApplications } = useAppSelector((state) => state.applications);
-  console.log('appli', userApplications);
+
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);

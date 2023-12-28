@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import { useAppSelector } from "@/store/store";
+
 import { JobDetails } from "..";
 
 interface jobInterface {
@@ -22,8 +24,28 @@ interface JobsListProps {
 }
 
 export const JobsList: FC<JobsListProps> = ({ jobs }) => {
+  const { user } = useAppSelector((state) => state.user);
+  const { userApplications } = useAppSelector((state) => state.applications);
+
+  const isLoggedIn = !!user;
+
+  const isJobAlreadyApplied = (jobId: number): boolean => {
+    if (isLoggedIn && userApplications) {
+      return userApplications.some(
+        (application) => application.jobs.id === jobId
+      );
+    }
+    return false;
+  };
+
   return jobs.length ? (
-    jobs.map((job) => <JobDetails job={job} key={job.id} />)
+    jobs.map((job) => (
+      <JobDetails
+        job={job}
+        key={job.id}
+        isJobAlreadyApplied={isJobAlreadyApplied(job.id)}
+      />
+    ))
   ) : (
     <span>No Jobs found</span>
   );
