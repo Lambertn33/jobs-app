@@ -102,6 +102,7 @@ export const Job = () => {
     e.preventDefault();
     setIsSubmitting(true);
     const { data } = await createApplication(jobApplicationInputs);
+    
     if (data) {
       // Application submitted successfully
       setIsSubmitting(false);
