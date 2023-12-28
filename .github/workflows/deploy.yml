@@ -1,0 +1,34 @@
+name: deployment
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      VITE_URL: ${{ secrets.VITE_URL }}
+      VITE_ANON_KEY: ${{ secrets.VITE_ANON_KEY }}
+    steps:
+      - name: get the codes
+        uses: actions/checkout@v4
+
+      - name: install the dependencies
+        run: npm install
+
+      - name: build the project
+        run: npm run build
+
+      - name: produce artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: download the artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-files
