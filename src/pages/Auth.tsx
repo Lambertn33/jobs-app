@@ -86,7 +86,7 @@ export const Auth = () => {
 
       if (user) {
         dispatch(userActions.setUser(user));
-        history.replace("/profile");
+        history.replace("/applications");
       }
     } catch (error) {
       setError("Authentication failed. Please try again.");

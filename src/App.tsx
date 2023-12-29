@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Home, Auth, Jobs, Job, Profile, Applications } from "./pages";
+import { Home, Auth, Jobs, Job, Applications } from "./pages";
 
 import { AppFooter, AppNavbar, PrivateRoute } from "./components";
 
@@ -10,9 +10,6 @@ const App = () => {
       <AppNavbar />
       <div className="px-12">
         <Switch>
-          <PrivateRoute path="/profile">
-            <Profile />
-          </PrivateRoute>
           <PrivateRoute path="/applications">
             <Applications />
           </PrivateRoute>

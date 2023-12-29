@@ -50,11 +50,6 @@ export const AppNavbar = () => {
                   {user.email}
                 </span>
               </Dropdown.Header>
-
-              <Dropdown.Item>
-                <Link to="/profile">My Profile</Link>
-              </Dropdown.Item>
-
               <Dropdown.Divider />
 
               <Dropdown.Item>
