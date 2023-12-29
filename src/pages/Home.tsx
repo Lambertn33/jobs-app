@@ -31,7 +31,7 @@ export const Home = () => {
           </div>
         </div>
       </section>
-      <section className="bg-[#0e7470] rounded-lg mb-4">
+      <section className="bg-[#0e7470] rounded-lg mb-16">
         <div className="gap-16 items-center px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
           <div className="font-light text-white sm:text-lg dark:text-gray-400">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
@@ -62,6 +62,7 @@ export const Home = () => {
           </div>
         </div>
       </section>
+      <div className="py-4"></div>
     </>
   );
 };
