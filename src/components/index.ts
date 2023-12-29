@@ -1,5 +1,7 @@
 import { AppNavbar } from "./AppNavbar";
 
+import { AppFooter } from "./AppFooter";
+
 import { AppAlert } from "./UI/AppAlert";
 
 import { AppTextInput } from "./UI/AppTextInput";
@@ -20,6 +22,7 @@ import { PrivateRoute } from "./PrivateRoute";
 
 export {
   AppNavbar,
+  AppFooter,
   AppAlert,
   AppTextInput,
   AppTextarea,

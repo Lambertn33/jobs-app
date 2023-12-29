@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { Home, Auth, Jobs, Job, Profile, Applications } from "./pages";
 
-import { AppNavbar, PrivateRoute } from "./components";
+import { AppFooter, AppNavbar, PrivateRoute } from "./components";
 
 const App = () => {
   return (
@@ -30,6 +30,7 @@ const App = () => {
           </Route>
         </Switch>
       </div>
+      <AppFooter />
     </Router>
   );
 };
