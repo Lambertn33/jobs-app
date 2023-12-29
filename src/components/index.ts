@@ -4,6 +4,8 @@ import { AppFooter } from "./AppFooter";
 
 import { AppAlert } from "./UI/AppAlert";
 
+import { AppNotFound } from "./AppNotFound";
+
 import { AppTextInput } from "./UI/AppTextInput";
 
 import { AppTextarea } from "./UI/AppTextarea";
@@ -25,6 +27,7 @@ export {
   AppFooter,
   AppAlert,
   AppTextInput,
+  AppNotFound,
   AppTextarea,
   JobsList,
   JobDetails,

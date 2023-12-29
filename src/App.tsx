@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Home, Auth, Jobs, Job, Applications } from "./pages";
+import { Home, Auth, Jobs, Job, Applications, Notfound } from "./pages";
 
 import { AppFooter, AppNavbar, PrivateRoute } from "./components";
 
@@ -22,8 +22,11 @@ const App = () => {
           <Route path="/jobs">
             <Jobs />
           </Route>
-          <Route path="/">
+          <Route path="/" exact>
             <Home />
+          </Route>
+          <Route path="*">
+            <Notfound />
           </Route>
         </Switch>
       </div>
