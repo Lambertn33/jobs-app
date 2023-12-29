@@ -1,10 +1,12 @@
 export const AppFooter = () => {
+  const currentYear = new Date().getFullYear();
+  
   return (
     <footer className="p-4 sm:p-6 dark:bg-gray-800 fixed bg-[#0e7470] bottom-0 w-full">
       <div className="mx-auto max-w-screen-xl">
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-white sm:text-center dark:text-gray-400">
-            © 2022{" "}
+            © {currentYear}{" "}
             . All Rights Reserved.
           </span>
           <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
