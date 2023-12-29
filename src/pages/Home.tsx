@@ -62,7 +62,6 @@ export const Home = () => {
           </div>
         </div>
       </section>
-      <div className="py-4"></div>
     </>
   );
 };

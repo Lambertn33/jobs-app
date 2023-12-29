@@ -39,7 +39,7 @@ interface companyInterface {
 
 interface jobApplicationInterface {
   id?: number;
-  user_id: number;
+  user_id: number | undefined;
   job_id: number;
   reason: string;
   portfolio: string;
@@ -62,7 +62,7 @@ export const Job = () => {
   const [jobApplicationInputs, setJobApplicationInputs] =
     useState<jobApplicationInterface>({
       job_id: parseInt(jobId),
-      user_id: user!.id,
+      user_id: user?.id,
       linkedin: "",
       experience_years: "",
       portfolio: "",

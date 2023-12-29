@@ -2,7 +2,7 @@ import { supabase } from "@/helpers/supabase";
 
 interface jobApplicationInterface {
   id?: number;
-  user_id: number;
+  user_id?: number;
   job_id: number;
   reason: string;
   portfolio: string;
