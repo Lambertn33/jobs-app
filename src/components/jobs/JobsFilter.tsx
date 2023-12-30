@@ -44,6 +44,7 @@ export const JobsFilter: FC<JobsFiltersProps> = ({
     <div className="flex gap-4">
       <div className="max-w-md">
         <TextInput
+          data-cy="jobs-title-filter"
           type="text"
           placeholder="Search Job by title..."
           value={filters.title}
@@ -53,6 +54,7 @@ export const JobsFilter: FC<JobsFiltersProps> = ({
 
       <div className="max-w-md">
         <Select
+          data-cy="jobs-types-filter"
           value={filters.type}
           onChange={(e) => setFiltersHandler("type", e.target.value)}
         >
