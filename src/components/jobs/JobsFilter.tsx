@@ -67,6 +67,7 @@ export const JobsFilter: FC<JobsFiltersProps> = ({
 
       <div className="max-w-md">
         <Select
+          data-cy="jobs-companies-filter"
           disabled={!companiesFetched}
           value={filters.company}
           onChange={(e) => setFiltersHandler("company", e.target.value)}

@@ -57,7 +57,7 @@ export const Jobs: FC = () => {
   ) {
     return (
       <div className="flex items-center justify-center h-full">
-        <Spinner />
+        <Spinner data-cy="jobs-spinner"/>
       </div>
     );
   }
