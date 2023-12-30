@@ -30,11 +30,11 @@ export const AppNavbar = () => {
       </Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse>
-        <Navbar.Link as={Link} to="/">
+        <Navbar.Link as={Link} to="/" data-cy="nav-home-link">
           Home
         </Navbar.Link>
 
-        <Navbar.Link as={Link} to="/jobs">
+        <Navbar.Link as={Link} to="/jobs" data-cy="nav-jobs-link">
           Jobs
         </Navbar.Link>
         {user ? (
@@ -53,7 +53,7 @@ export const AppNavbar = () => {
               <Dropdown.Divider />
 
               <Dropdown.Item>
-                <Link to="/applications">My Applications</Link>
+                <Link to="/applications" data-cy="nav-user-applications-link">My Applications</Link>
               </Dropdown.Item>
 
               <Dropdown.Divider />
@@ -68,7 +68,7 @@ export const AppNavbar = () => {
             <Navbar.Toggle />
           </div>
         ) : (
-          <Navbar.Link as={Link} to="/auth">
+          <Navbar.Link as={Link} to="/auth" data-cy="nav-auth-link">
             Authentication
           </Navbar.Link>
         )}
