@@ -144,7 +144,7 @@ export const Job = () => {
       </div>
       {isLoading ? (
         <div>
-          <Spinner />
+          <Spinner data-cy="job-details-spinner"/>
         </div>
       ) : (
         <section className="bg-gray-50 dark:bg-gray-900">
@@ -157,18 +157,18 @@ export const Job = () => {
           ) : (
             <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 flex flex-col gap-6">
               <div className="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400 flex flex-col">
-                <h2 className="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
+                <h2 className="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white" data-cy="job-title">
                   {job?.title} position at{" "}
                   <span className="font-extrabold">{job?.companies.name}</span>
                 </h2>
-                <p className="font-normal text-gray-700 dark:text-gray-400">
+                <p className="font-normal text-gray-700 dark:text-gray-400" data-cy="job-description">
                   {job?.description}
                 </p>
               </div>
               <div className="flex flex-col gap-1">
                 <span className="text-sm font-light">
                   Location:{" "}
-                  <span className="font-bold">{job?.companies.location}</span>
+                  <span className="font-bold" data-cy="job-location">{job?.companies.location}</span>
                 </span>
                 <span className="text-sm font-light">
                   Work type: <span className="font-bold">{job?.type}</span>
